@@ -59,7 +59,7 @@ export function HeroSection() {
           </CyanButton>
         </div>
 
-        <div data-hero className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30">
+        <div data-hero className="absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30">
           <span className="text-[0.6rem] tracking-[0.4em]">SCROLL</span>
           <div className="w-px h-8 bg-gradient-to-b from-cyan/40 to-transparent" />
         </div>
