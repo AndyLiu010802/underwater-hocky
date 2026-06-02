@@ -4,7 +4,11 @@ import type { GalleryImageItem } from '@/sanity/lib/types'
 import Image from 'next/image'
 
 async function getGalleryImages(): Promise<GalleryImageItem[]> {
-  return client.fetch(galleryQuery, {}, { next: { revalidate: 3600 } })
+  try {
+    return await client.fetch(galleryQuery, {}, { next: { revalidate: 3600 } })
+  } catch {
+    return []
+  }
 }
 
 export async function GallerySection() {

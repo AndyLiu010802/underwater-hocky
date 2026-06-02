@@ -5,7 +5,11 @@ import { EventCountdownCard } from './EventCountdownCard'
 import Link from 'next/link'
 
 async function getUpcomingEvents(): Promise<EventItem[]> {
-  return client.fetch(upcomingEventsQuery, {}, { next: { revalidate: 60 } })
+  try {
+    return await client.fetch(upcomingEventsQuery, {}, { next: { revalidate: 60 } })
+  } catch {
+    return []
+  }
 }
 
 export async function EventsSection() {

@@ -16,7 +16,11 @@ const TAG_COLORS: Record<string, string> = {
 }
 
 async function getLatestNews(): Promise<NewsItem[]> {
-  return client.fetch(latestNewsQuery, {}, { next: { revalidate: 60 } })
+  try {
+    return await client.fetch(latestNewsQuery, {}, { next: { revalidate: 60 } })
+  } catch {
+    return []
+  }
 }
 
 export async function NewsSection() {
