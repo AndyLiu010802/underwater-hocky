@@ -113,7 +113,7 @@ Full article with cover image hero, rich text body (Portable Text), related arti
 Full list of upcoming + past events. Upcoming: countdown timers. Past: dimmed with result badge.
 
 ### 5.5 About (`/about`)
-Static page: history, committee, rules, safety policy (PDF links). No CMS needed — markdown or hardcoded.
+Static page: history, committee, rules, safety policy (PDF links). Content hardcoded in TSX — no CMS needed for this page.
 
 ### 5.6 Sanity Studio (`/studio`)
 Embedded Sanity Studio. Password-protected via Sanity's built-in auth. Non-technical staff access this to manage all content.
@@ -175,7 +175,7 @@ footerText: text
 | Gallery | CSS + GSAP | Masonry grid items fade in staggered; hover: scale + cyan border glow + caption overlay |
 | CTA | GSAP ScrollTrigger | Words fly in one-by-one; background pulse glow radiates from center |
 
-**Scroll smoothing:** GSAP ScrollSmoother wraps the entire page for buttery-smooth inertia scrolling.
+**Scroll smoothing:** `@studio-freight/lenis` (free, MIT) wraps the entire page for buttery-smooth inertia scrolling. GSAP ScrollTrigger integrates with Lenis via `lenis.on('scroll', ScrollTrigger.update)`.
 
 ---
 
