@@ -3,6 +3,7 @@ import { StatsSection } from '@/components/sections/StatsSection'
 import { NewsSection } from '@/components/sections/NewsSection'
 import { EventsSection } from '@/components/sections/EventsSection'
 import { HowToPlaySection } from '@/components/sections/HowToPlaySection'
+import { GallerySection } from '@/components/sections/GallerySection'
 
 export default function HomePage() {
   return (
@@ -12,6 +13,7 @@ export default function HomePage() {
       <NewsSection />
       <EventsSection />
       <HowToPlaySection />
+      <GallerySection />
     </div>
   )
 }
