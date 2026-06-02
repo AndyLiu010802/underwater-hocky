@@ -175,7 +175,7 @@ footerText: text
 | Gallery | CSS + GSAP | Masonry grid items fade in staggered; hover: scale + cyan border glow + caption overlay |
 | CTA | GSAP ScrollTrigger | Words fly in one-by-one; background pulse glow radiates from center |
 
-**Scroll smoothing:** `@studio-freight/lenis` (free, MIT) wraps the entire page for buttery-smooth inertia scrolling. GSAP ScrollTrigger integrates with Lenis via `lenis.on('scroll', ScrollTrigger.update)`.
+**Scroll smoothing:** GSAP ScrollSmoother (free since August 2023 — all GSAP plugins are now MIT-licensed) wraps the entire page for buttery-smooth inertia scrolling.
 
 ---
 
@@ -208,7 +208,37 @@ Mobile: hamburger menu slides in from right, full-screen overlay, same deep ocea
 
 ---
 
-## 11. Out of Scope
+## 11. Custom Cursor — Hockey Stick + Puck Physics
+
+A global interactive cursor overlay rendered on a full-screen `<canvas>` element positioned above all page content (`z-index: 9999`, `pointer-events: none`).
+
+### Cursor
+- The system cursor is hidden (`cursor: none` on `<body>`)
+- A custom SVG hockey stick follows the mouse precisely
+- The stick rotates to always point in the last drag direction
+- On hover over clickable elements: stick glows cyan
+
+### Puck Launch Mechanic
+1. **Mousedown:** A small puck (black disc with cyan rim glow) appears at the cursor tip
+2. **Hold + drag:** A dotted "power line" shows the drag vector; the longer the drag, the higher the launch speed (capped at max velocity). Puck pulses while charging.
+3. **Mouseup:** Puck launches in the **opposite** direction of the drag vector (slingshot feel) at the calculated velocity
+4. **Physics loop (rAF):**
+   - Puck moves with initial velocity
+   - Friction decelerates it gradually (`velocity *= 0.985` per frame)
+   - Bounces off viewport edges with slight energy loss (`velocity *= 0.7` on bounce)
+   - Leaves a fading cyan trail (last N positions drawn with decreasing opacity)
+   - Fades out and disappears once velocity drops below threshold
+5. **Multiple pucks:** Up to 5 pucks can exist simultaneously; oldest removed when limit exceeded
+
+### Implementation
+- `components/cursor/CustomCursor.tsx` — canvas overlay + mouse event listeners
+- `useCustomCursor` hook manages puck array state and rAF physics loop
+- Works on desktop only; falls back to default cursor on touch devices
+- Canvas size updates on `window.resize`
+
+---
+
+## 12. Out of Scope
 
 - User authentication / member login
 - Online shop / payments
