@@ -4,6 +4,7 @@ import { NewsSection } from '@/components/sections/NewsSection'
 import { EventsSection } from '@/components/sections/EventsSection'
 import { HowToPlaySection } from '@/components/sections/HowToPlaySection'
 import { GallerySection } from '@/components/sections/GallerySection'
+import { CtaSection } from '@/components/sections/CtaSection'
 
 export default function HomePage() {
   return (
@@ -14,6 +15,7 @@ export default function HomePage() {
       <EventsSection />
       <HowToPlaySection />
       <GallerySection />
+      <CtaSection />
     </div>
   )
 }
